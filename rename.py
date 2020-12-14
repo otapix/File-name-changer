@@ -10,24 +10,24 @@ extension = None
 
 if args:
     if '-n' in args:
-        index = args.index('-n')
-        if len(args) > index + 1:
-            nn = args[index + 1].split('|')
+        index = args.index('-n') + 1
+        if len(args) > index:
+            nn = args[index].split('|')
             if nn[1].isnumeric():
                 start_number = int(nn[1])
                 new_name = nn[0] + '{:0' + str(len(nn[1])) + 'd}' + nn[2] + '{}'
     if '-f' in args:
-        index = args.index('-f')
-        if len(args) > index + 1:
-            pattern = args[index + 1]
+        index = args.index('-f') + 1
+        if len(args) > index:
+            pattern = args[index]
     if '-e' in args:
-        index = args.index('-e')
-        if len(args) > index + 1:
-            extension = args[index + 1]
+        index = args.index('-e') + 1
+        if len(args) > index:
+            extension = args[index]
     if '-p' in args:
-        index = args.index('-p')
-        if len(args) > index + 1:
-            directory = args[index + 1]
+        index = args.index('-p') + 1
+        if len(args) > index:
+            directory = args[index]
             if os.path.exists(directory):
                 os.chdir(directory)
                 files = glob.glob(os.path.join(directory, pattern))
@@ -58,9 +58,9 @@ print('      -f "*[0-9]*" - all files contains numbers')
 print('      -f "abc*.txt" - all ".txt" files starting with "abc"')
 print('      -f ... and more regular expression patterns')
 print(' -n : new name with start number format beatwen "|"')
-print('      -n "my_new_|00100|_file"')
-print('      -n "file |9|"')
-print('      -n "|001|-image"')
+print('      -n "File_|001|" (default)')
+print('      -n "my_new_|00900|_file"')
+print('      -n "|1|-image"')
 print(' -e : change extension')
 print('      -e "xxx"')
 print(' example:')
